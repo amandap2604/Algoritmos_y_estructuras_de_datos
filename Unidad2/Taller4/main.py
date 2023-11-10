@@ -157,6 +157,41 @@ def crearArbol(lista):
 if __name__ == "__main__":
     lista = crear_lista(1000000)
     
+    """inicio = time.time()
+    burbuja(lista)
+    fin = time.time()
+    tiempo = fin-inicio
+
+    inicio = time.time()
+    burbujaMejorada(lista)
+    fin = time.time()
+    tiempo = fin-inicio
+
+    inicio = time.time()
+    burbujaBidireccional(lista)
+    fin = time.time()
+    tiempo = fin-inicio
+
+    inicio = time.time()
+    seleccion(lista)
+    fin = time.time()
+    tiempo = fin-inicio
+
+    inicio = time.time()
+    insercion(lista)
+    fin = time.time()
+    tiempo = fin-inicio
+
+    inicio = time.time()
+    ordenamientoRapido(lista,0,len(lista)-1)
+    fin = time.time()
+    tiempo = fin-inicio
+
+    inicio = time.time()
+    ordenamientoMezcla(lista)
+    fin = time.time()
+    tiempo = fin-inicio"""
+
     inicio = time.time()
     crearArbol(lista)
     fin = time.time()
