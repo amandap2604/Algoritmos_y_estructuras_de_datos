@@ -1,0 +1,80 @@
+import random
+
+def crear_lista(cantidad):
+    lista = []
+    while len(lista) <= cantidad:
+        dato = random.randint(1,10)
+        if not (dato in lista):
+            lista.append(dato)
+    return lista
+
+def ordenamientoRapido(lista, primero, ultimo):
+    izquierda = primero
+    derecha = ultimo - 1
+    pivote = ultimo
+    while izquierda < derecha:
+        while lista[izquierda] < lista[pivote] and izquierda <= derecha:
+            izquierda += 1
+        while lista[derecha] > lista[pivote] and derecha >= izquierda:
+            derecha -= 1
+        if izquierda < derecha:
+            aux = lista[izquierda]
+            lista[izquierda] = lista[derecha]
+            lista[derecha] = aux
+    if lista[pivote] < lista[izquierda]:
+        aux = lista[izquierda]
+        lista[izquierda] = lista[pivote]
+        lista[pivote] = aux
+    if primero < izquierda:
+        ordenamientoRapido(lista, primero, izquierda - 1)
+    if ultimo > izquierda:
+        ordenamientoRapido(lista, izquierda + 1, ultimo)
+
+def secuencial(lista, info):
+    pos = 0
+    encontrado = False
+    while pos < len(lista) and not encontrado:
+        if lista[pos] == info:
+            encontrado = True
+        else:
+            pos += 1
+    return encontrado
+
+def binariaIterativa(lista, info):
+    izq = 0 
+    der = len(lista) -1
+    encontrado = False
+    while izq <= der and not encontrado:
+        mitad = (izq+der)//2
+        if lista[mitad] == info:
+            encontrado = True
+            return encontrado
+        elif lista[mitad] > info:
+            der = mitad-1
+        else:
+            izq = mitad+1
+    return encontrado
+
+def binariaRecursiva(lista, info, menor, mayor):
+    encontrado = False
+    if mayor >= menor and not encontrado:
+        mitad = (mayor + menor) // 2
+        if lista[mitad] == info:
+            encontrado = True
+            return encontrado
+        elif lista[mitad] > info:
+            return binariaRecursiva(lista, info, menor, mitad-1)
+        else:
+            return binariaRecursiva(lista, info, mitad+1, mayor)
+    else:
+        return encontrado
+
+if __name__ == "__main__":
+    lista = crear_lista(5)
+    ordenamientoRapido(lista, 0, len(lista)-1)
+    print(lista)
+    print("Ingresar el número que busca")
+    busqueda = int(input())
+    print(secuencial(lista, busqueda))
+    print(binariaIterativa(lista, busqueda))
+    print(binariaRecursiva(lista, busqueda, 0, len(lista)-1))
